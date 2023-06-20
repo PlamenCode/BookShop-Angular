@@ -1,0 +1,20 @@
+<!-- <app-books></app-books>
+<app-cart></app-cart> -->
+
+<nav>
+    <div>
+        <a routerLink="/">Home</a>
+    </div>
+    <div>
+
+        <ng-container *ngIf="isAuthenticated()">
+            <a routerLink="/cart">Cart</a>
+            <button (click)="logout()">Logout</button>
+        </ng-container>
+        <ng-container *ngIf="!isAuthenticated()">
+            <a routerLink="/login">Login</a>
+            <a routerLink="/register">register</a>
+        </ng-container>
+    </div>
+</nav>
+<router-outlet></router-outlet>

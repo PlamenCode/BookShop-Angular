@@ -1,0 +1,35 @@
+<div>
+    <form (ngSubmit)="submit()" action="" #loginForm="ngForm">
+        <h1>Login</h1>
+        <div>
+            <label for="email">Email</label>
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="example@gmail.com" 
+                [(ngModel)]="form.email"
+                #email="ngModel"
+                required
+            />
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="******" 
+                [(ngModel)]="form.password"
+                #password="ngModel"
+                required
+            />
+        </div>
+        <div *ngIf="email.invalid && (password.dirty || password.touched)">Invalid Email or Password</div>
+
+        <div>
+            <button [disabled]="loginForm.invalid" type="submit">
+                <ng-container *ngIf="isLoading()">Loading...</ng-container>
+                <ng-container *ngIf="!isLoading()">Login</ng-container>
+            </button>
+        </div>
+    </form>
+</div>

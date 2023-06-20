@@ -1,0 +1,7 @@
+<h2>List of Books</h2>
+
+<ul *ngIf="isShowing">
+    <ng-container *ngFor="let SingleBook of books">
+       <app-book [book]="SingleBook" ></app-book>
+    </ng-container>
+</ul>

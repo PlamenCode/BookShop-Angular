@@ -1,0 +1,53 @@
+<div>
+    <form action="" (ngSubmit)="submit()" #RegisterForm="ngForm">
+        <h1>Register</h1>
+        <div>
+            <label for="email">Email</label>
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="example@gmail.com" 
+                [(ngModel)]="form.email"
+                #email="ngModel"
+                required
+            />
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">Invaid Email</div>
+
+
+        <div>
+            <label for="password">Password</label>
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="******" 
+                [(ngModel)]="form.password"
+                #password="ngModel"
+                required
+            />
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">Passwords dont match</div>
+
+
+        <div>
+            <label for="repass">Repeat-Password</label>
+            <input 
+                type="repass" 
+                name="repass" 
+                placeholder="******" 
+                [(ngModel)]="form.repass"
+                #repass="ngModel"
+                required
+            />
+        </div>
+        <div *ngIf="repass.invalid && (repass.dirty || repass.touched)">Passwords dont match</div>
+
+
+        <div>
+            <button [disabled]="RegisterForm.invalid" type="submit">
+                <ng-container *ngIf="isLoading()">Loading...</ng-container>
+                <ng-container *ngIf="!isLoading()">Register</ng-container>
+            </button>
+        </div>
+    </form>
+</div>

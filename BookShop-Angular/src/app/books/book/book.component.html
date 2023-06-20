@@ -1,0 +1,8 @@
+<li>
+    <img [src]="book.img" [alt]="book.name">
+    <h4>{{ book.name | titlecase }} by {{ book.author | titlecase }}</h4>
+    <p>{{ book.price | currency:'USD' }}</p>
+    <button *ngIf="!isInCart" (click)="addToCart()" >Add To Cart</button>
+    <button *ngIf="isInCart" (click)="removeFromCart()" >Remove from Cart</button>
+
+</li>
