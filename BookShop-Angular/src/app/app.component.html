@@ -5,16 +5,25 @@
     <div>
         <a routerLink="/">Home</a>
     </div>
-    <div>
-
+    <div class="navButtons">
+        <a routerLink="/books">Catalog</a>
         <ng-container *ngIf="isAuthenticated()">
+            <a routerLink="/create">Create Offer</a>
             <a routerLink="/cart">Cart</a>
             <button (click)="logout()">Logout</button>
         </ng-container>
         <ng-container *ngIf="!isAuthenticated()">
             <a routerLink="/login">Login</a>
-            <a routerLink="/register">register</a>
+            <a routerLink="/register">Register</a>
         </ng-container>
     </div>
 </nav>
-<router-outlet></router-outlet>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
+
+<footer>
+    <p>This is Angular Project Defance ( Book Shop ) by Plamen Chichkov</p>
+    <p>All rights reserver 2023&copy;</p>
+</footer>

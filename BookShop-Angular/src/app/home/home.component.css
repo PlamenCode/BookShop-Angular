@@ -1,0 +1,31 @@
+.main{
+    text-align: center;
+    width: 100vw;
+}
+h1{
+    font-size: 3rem;
+    letter-spacing: 6px;
+}
+
+.container{
+    display: flex;
+    max-width: 70%;
+    margin: auto;
+    gap: 40px;
+    justify-content: center;
+}
+
+.content{
+    max-width: 40%;
+    margin-right: 200px;
+}
+
+h2{
+    font-style: italic;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+img{
+    height: 400px;
+}

@@ -16,7 +16,12 @@ export class AuthService {
   isLoading: boolean = false;
   passwordMatch: boolean = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    if(sessionStorage.getItem('accessToken')){
+      this.isAuthenticated = true;
+    }
+  }
+
 
   login(form: LoginForm) {
     if (this.isLoading) {
@@ -71,6 +76,7 @@ export class AuthService {
       .then(() => {
         this.router.navigate(['/login'])
         this.isAuthenticated = false;
+        sessionStorage.removeItem('accessToken');
       })
       .catch((error) => {
         // An error happened.

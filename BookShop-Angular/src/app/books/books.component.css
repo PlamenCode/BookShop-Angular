@@ -1,0 +1,22 @@
+ul{
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 15px;
+    text-decoration: none;
+    text-align: center;
+    list-style: none;
+}
+
+app-book{
+    width: 25%;
+}
+
+h2{
+    text-align: center ;
+    font-size: 3rem;
+    margin-bottom: 100px;
+    font-style: italic;
+    letter-spacing: 6px;
+}

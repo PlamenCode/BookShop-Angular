@@ -1,7 +1,7 @@
-<div>
+<div class="loginContainer">
     <form (ngSubmit)="submit()" action="" #loginForm="ngForm">
         <h1>Login</h1>
-        <div>
+        <div class="input">
             <label for="email">Email</label>
             <input 
                 type="email" 
@@ -12,7 +12,8 @@
                 required
             />
         </div>
-        <div>
+
+        <div class="input">
             <label for="password">Password</label>
             <input 
                 type="password" 
@@ -23,6 +24,7 @@
                 required
             />
         </div>
+
         <div *ngIf="email.invalid && (password.dirty || password.touched)">Invalid Email or Password</div>
 
         <div>

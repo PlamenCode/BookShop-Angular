@@ -1,7 +1,7 @@
-<div>
+<div class="loginContainer">
     <form action="" (ngSubmit)="submit()" #RegisterForm="ngForm">
         <h1>Register</h1>
-        <div>
+        <div class="input">
             <label for="email">Email</label>
             <input 
                 type="email" 
@@ -15,7 +15,7 @@
         <div *ngIf="email.invalid && (email.dirty || email.touched)">Invaid Email</div>
 
 
-        <div>
+        <div class="input">
             <label for="password">Password</label>
             <input 
                 type="password" 
@@ -29,7 +29,7 @@
         <div *ngIf="password.invalid && (password.dirty || password.touched)">Passwords dont match</div>
 
 
-        <div>
+        <div class="input">
             <label for="repass">Repeat-Password</label>
             <input 
                 type="repass" 

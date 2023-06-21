@@ -20,6 +20,6 @@ export class CartService {
   }
 
   remove(book: Book){
-    this.cart = this.cart.filter((b) => b != book)
+    this.cart = this.cart.filter(b => b.name != book.name);
   }
 }

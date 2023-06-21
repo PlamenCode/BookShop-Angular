@@ -14,4 +14,10 @@ export class CartComponent {
   getCart(){
     return this.cartService.get();
   }
+
+  removeFromCart(event: any){
+    console.log(event);
+    
+    // this.cartService.remove(this.cartService.remove());
+  }
 }
