@@ -8,3 +8,8 @@ export interface RegisterForm{
     password: string,
     repass: string
 }
+
+export interface User{
+    email: string,
+    uid: string
+}

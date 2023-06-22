@@ -10,5 +10,5 @@ export const firebaseConfig = {
   projectId: "bookshop-angular",
   storageBucket: "bookshop-angular.appspot.com",
   messagingSenderId: "455113996168",
-  appId: "1:455113996168:web:007599abea30e84581ac3d"
+  appId: "1:455113996168:web:007599abea30e84581ac3d",
 };

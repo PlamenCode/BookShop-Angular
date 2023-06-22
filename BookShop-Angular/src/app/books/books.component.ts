@@ -21,5 +21,4 @@ export class BooksComponent implements OnInit {
     toggleBooks(){
         this.isShowing = !this.isShowing
     };
-
 }

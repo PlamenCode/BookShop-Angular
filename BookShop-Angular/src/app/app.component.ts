@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { initializeApp } from 'firebase/app';
+import { getDatabase } from "firebase/database";
 import { firebaseConfig } from './firebase.config';
 import { AuthService } from './auth/auth.service';
 
@@ -10,11 +11,12 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'BookShop-Angular';
-
+  
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    initializeApp(firebaseConfig)
+    initializeApp(firebaseConfig);
+    getDatabase(initializeApp(firebaseConfig));
   }
 
   isAuthenticated(){

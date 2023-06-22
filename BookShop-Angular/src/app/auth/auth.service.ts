@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth';
-import { LoginForm, RegisterForm } from '../interfaces/Auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, } from 'firebase/auth';
+import { LoginForm, RegisterForm, User } from '../interfaces/Auth';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  user: User = {
+    email: '',
+    uid: ''
+  };
+
   isAuthenticated: boolean = false;
   isLoading: boolean = false;
   passwordMatch: boolean = true;
@@ -21,7 +21,6 @@ export class AuthService {
       this.isAuthenticated = true;
     }
   }
-
 
   login(form: LoginForm) {
     if (this.isLoading) {
@@ -34,7 +33,15 @@ export class AuthService {
       .then((userCredential) => {
         this.isAuthenticated = true;
         const user: any = userCredential.user;
-        sessionStorage.setItem('accessToken', user.accessToken);
+
+        this.user = {
+          email: user.email,
+          uid: user.uid,
+        }
+
+        sessionStorage.setItem('accessToken', JSON.stringify(user.accessToken));
+        sessionStorage.setItem('user', this.user as any);
+
         this.router.navigate(['/']);
       })
       .catch((error) => {
@@ -75,8 +82,15 @@ export class AuthService {
     signOut(auth)
       .then(() => {
         this.router.navigate(['/login'])
-        this.isAuthenticated = false;
+        this.isAuthenticated = false;    
+        this.user = {
+          email: '',
+          uid: ''
+        }
+        
         sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('user');
+
       })
       .catch((error) => {
         // An error happened.
