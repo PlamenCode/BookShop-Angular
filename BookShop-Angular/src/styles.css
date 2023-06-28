@@ -1,10 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 *{
     box-sizing: border-box;
 }
 
 body{
     background-color: rgb(233, 231, 231);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courgette', Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
+    /* background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+
+    /* background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(215,103,245,1) 17%, rgba(187,122,168,1) 33%, rgba(244,255,109,1) 56%, rgba(215,103,245,1) 73%, rgba(115,97,230,1) 91%); */
+
+
 }

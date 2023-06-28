@@ -19,7 +19,13 @@ export class AuthService {
   constructor(private router: Router) {
     if(sessionStorage.getItem('accessToken')){
       this.isAuthenticated = true;
+      this.user.email = sessionStorage.getItem('userEmail') as any;
+      this.user.uid = sessionStorage.getItem('userUid') as any;
     }
+  }
+  
+  getUserId(){ 
+    return this.user.uid;
   }
 
   login(form: LoginForm) {
@@ -40,7 +46,9 @@ export class AuthService {
         }
 
         sessionStorage.setItem('accessToken', JSON.stringify(user.accessToken));
-        sessionStorage.setItem('user', this.user as any);
+        sessionStorage.setItem('userEmail', this.user.email);
+        sessionStorage.setItem('userUid', this.user.uid);
+
 
         this.router.navigate(['/']);
       })
@@ -89,8 +97,8 @@ export class AuthService {
         }
         
         sessionStorage.removeItem('accessToken');
-        sessionStorage.removeItem('user');
-
+        sessionStorage.removeItem('userEmail');
+        sessionStorage.removeItem('userUid');
       })
       .catch((error) => {
         // An error happened.

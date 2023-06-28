@@ -1,18 +1,18 @@
 <div class="cover">
     <h3>Your Cart</h3>
-    <div class="card" *ngIf="getCart().length > 0">
-        <div class="container" *ngFor="let book of getCart()">
+    <div class="card" *ngIf=" cart.length > 0">
+        <div class="container" *ngFor="let book of cart">
             
             <img [src]="book.img" [alt]="book.name" />
             <h3>{{ book.name | titlecase }}</h3>
             <p>by {{ book.author | titlecase }}</p>
             <p>{{ book.price | currency : "USD" }}</p>
             <div class="buttons">
-                <button (click)="removeFromCart($event)" class="btn fill">Remove from Cart</button>
+                <button (click)="removeFromCart({book})" class="btn fill">Remove from Cart</button>
                 <button class="btn outline">Details</button>
             </div>
             
         </div>
     </div>
-    <div *ngIf="getCart().length === 0">No Books In The Cart</div>
+    <div *ngIf="cart.length === 0">No Books In The Cart</div>
 </div>

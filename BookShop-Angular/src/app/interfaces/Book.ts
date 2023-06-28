@@ -3,8 +3,18 @@ export interface Book{
     author: string,
     img: string,
     price: number,
-    description: string
+    description: string,
+    // _id: string
 };
+
+export interface BookId{
+    name: string,
+    author: string,
+    img: string,
+    price: number,
+    description: string,
+    _id: string
+}
 
 export interface createForm{
     name: string,

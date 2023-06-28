@@ -1,13 +1,21 @@
+
 nav{
     background-color: #7d5ba6;
+    background-color: rgba(167, 8, 210, 0.09);
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 60px;
     padding: 8px 20px;
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
     letter-spacing: 4px;
+}
+nav:hover{
+    background-color: rgba(170, 95, 217, 0.5);
+}
+nav > div:nth-child(1){
+    font-size: 24px;
 }
 .navButtons{
     display:  flex;
@@ -19,6 +27,12 @@ nav a, button{
     text-decoration: none;
     color: white;
 }
+a:hover{
+    transform: scale(1.5);  
+    border-color: rgba(255, 255, 255, 0.9);
+    filter: drop-shadow(0 10px 5px rgba(0,0,0,0.125));
+    transition: all .3s ease;    
+}
 
 .navButtons a, button{
     margin-right: 10%;
@@ -27,6 +41,9 @@ nav a, button{
 
 .navButtons button{
     color: #7d5ba6;
+    color: #bd1ded;
+    color: white;
+    background-color: #b17dec;
     cursor: pointer;
     font-size: 20px;
     letter-spacing: 4px;
@@ -35,14 +52,16 @@ nav a, button{
     padding: 6px 8px;
 }
 .navButtons button:hover{
-    transform: scale(1.125);  
+    transform: scale(1.2);
     border-color: rgba(255, 255, 255, 0.9);
-    filter: drop-shadow(0 10px 5px rgba(0,0,0,0.125));
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.233));
     transition: all .3s ease;    
 }
 
 footer{
     background-color: #7d5ba6;
+    background-color: #bd1ded;
+    background-color: rgba(170, 95, 217, 0.5);
     display: flex;
     justify-content: space-between;
     align-items: center;

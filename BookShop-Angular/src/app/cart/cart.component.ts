@@ -1,23 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { BookId } from '../interfaces/Book';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent {
+export class CartComponent implements OnInit{
+  cart: BookId[] = [];
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private http: HttpClient, private auth: AuthService, private router: Router) { }
+  
 
-
-  getCart(){
-    return this.cartService.get();
+  ngOnInit(): void {
+      this.http.get(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}`).subscribe(res => {
+      this.cart = res as any;
+      console.log('onInit');
+    })
   }
 
-  removeFromCart(event: any){
-    console.log(event);
-    
-    // this.cartService.remove(this.cartService.remove());
+  removeFromCart(book: any){
+    //TODO REFRESH PAGE TO VISUALIZE TGE CHANGES
+    this.http.delete(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}/${book.book._id}`).subscribe();
+    this.cart = this.cart.filter(x => x != book);
+    return this.router.navigate([this.router.url])
   }
+
+
 }

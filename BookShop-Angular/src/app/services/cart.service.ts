@@ -1,22 +1,28 @@
-import { Injectable } from '@angular/core';
-import { Book } from '../interfaces/Book';
+import { Injectable, OnInit } from '@angular/core';
+import { Book, BookId } from '../interfaces/Book';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  cart: BookId[] = [];
 
-  cart: Book[] = [];
-
-  constructor() { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
 
-  add(book:Book){
-    this.cart.push(book);
+  add(book:BookId){
+    return this.http.get(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
+      return res;
+    })
   }
 
   get(){
-    return this.cart;
+    return this.http.get(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}`).subscribe(res => {
+      this.cart = res as any;
+      return res;
+    })
   }
 
   remove(book: Book){

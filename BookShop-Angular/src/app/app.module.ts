@@ -10,8 +10,8 @@ import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [ AppComponent, CartComponent, HomeComponent ],
-  imports: [ BrowserModule, AppRoutingModule, BooksModule, AuthModule],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [ BrowserModule, AppRoutingModule, BooksModule, AuthModule ],
+  providers: [  ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

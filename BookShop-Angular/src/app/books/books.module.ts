@@ -6,13 +6,13 @@ import { BookComponent } from './book/book.component';
 import { CreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [BooksComponent, BookComponent, CreateComponent, DetailsComponent],
   providers: [ BooksService ],
-  imports: [ CommonModule, FormsModule ],
+  imports: [ CommonModule, FormsModule, HttpClientModule],
   exports: [ BooksComponent ]
 })
 export class BooksModule { }

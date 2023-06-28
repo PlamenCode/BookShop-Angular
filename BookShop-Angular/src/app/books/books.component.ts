@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../interfaces/Book';
+import { Book, BookId } from '../interfaces/Book';
 import { BooksService } from './books.service';
 
 @Component({
@@ -9,13 +9,15 @@ import { BooksService } from './books.service';
 })
 export class BooksComponent implements OnInit {
 
-    books: Book[] = [];
+    books: BookId[] = [];
     isShowing: boolean = true;
 
     constructor(private booksService: BooksService) { }
 
     ngOnInit(): void {
-        this.books = this.booksService.getBooks();
+        this.booksService.getBooks().subscribe(res => {
+            this.books = res as BookId[];      
+        })           
     }
 
     toggleBooks(){
