@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { createForm } from 'src/app/interfaces/Book';
 import { BooksService } from '../books.service';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Router } from '@angular/router'
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class CreateComponent {
+export class EditComponent {
+
+  constructor(private bookService: BooksService, private router: Router, private authService: AuthService) {}
+
   form: createForm = {
     name: '',
     author: '',
@@ -18,16 +21,10 @@ export class CreateComponent {
     description: '',
   };
 
-  constructor(private bookService: BooksService, private authService: AuthService, private router: Router) { }
-
-  // submit(){
-  //   this.bookService.createBook(this.form);
-  // }
   submitDatabase(){ 
     console.log(this.form);
     
     this.bookService.createBook(Object.assign(this.form, {ownerId: this.authService.getUserId()}));
     this.router.navigate(['/'])
   }
-
 }

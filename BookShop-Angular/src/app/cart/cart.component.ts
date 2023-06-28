@@ -19,15 +19,13 @@ export class CartComponent implements OnInit{
   ngOnInit(): void {
       this.http.get(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}`).subscribe(res => {
       this.cart = res as any;
-      console.log('onInit');
     })
   }
 
-  removeFromCart(book: any){
+  removeFromCart(book: BookId){
     //TODO REFRESH PAGE TO VISUALIZE TGE CHANGES
-    this.http.delete(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}/${book.book._id}`).subscribe();
-    this.cart = this.cart.filter(x => x != book);
-    return this.router.navigate([this.router.url])
+    this.http.delete(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}/${book._id}`).subscribe();
+    this.cart = this.cart.filter(x => x !== book);
   }
 
 

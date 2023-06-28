@@ -25,7 +25,8 @@ export class CartService {
     })
   }
 
-  remove(book: Book){
-    this.cart = this.cart.filter(b => b.name != book.name);
+  remove(book: BookId){ 
+    return this.http.delete(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}/${book._id}`).subscribe();
+
   }
 }

@@ -3,9 +3,14 @@
 <img src="{{bookDetails.img}}" alt="">
 <p>{{bookDetails.price}}</p>
 <p>{{bookDetails.description}}</p>
-<P>[IS IT ADDED TO CART]</P>
-<P>[IS IT ADDED TO CART]</P>
-<P>[IF OWNER EDIT AND DELETE]</P>
 
-<button (click)="display()"></button>
+<div *ngIf="isOwner">
+    <P>[IF OWNER EDIT AND DELETE]</P>
+    <button (click)="onEditClick()">Edit</button>
+    <button>Delete</button>
+</div>
+<div *ngIf="!isOwner">
+    <button>Remove From Cart</button>
+</div>
+
 

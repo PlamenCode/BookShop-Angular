@@ -13,6 +13,7 @@ export interface BookId{
     img: string,
     price: number,
     description: string,
+    ownerId: string,
     _id: string
 }
 

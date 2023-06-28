@@ -8,7 +8,7 @@
             <p>by {{ book.author | titlecase }}</p>
             <p>{{ book.price | currency : "USD" }}</p>
             <div class="buttons">
-                <button (click)="removeFromCart({book})" class="btn fill">Remove from Cart</button>
+                <button (click)="removeFromCart(book)" class="btn fill">Remove from Cart</button>
                 <button class="btn outline">Details</button>
             </div>
             

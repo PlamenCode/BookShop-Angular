@@ -3,6 +3,8 @@ import { Book, BookId } from '../../interfaces/Book';
 import { CartService } from 'src/app/services/cart.service';
 import { BooksService } from '../books.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-book',
@@ -11,27 +13,34 @@ import { Router } from '@angular/router';
 })
 export class BookComponent implements OnInit{
   @Input() book: BookId = {} as any;
-  cart: BookId[] = [];
 
   isInCart: boolean = false;
 
-  constructor(private cartService: CartService, private bookService: BooksService, private router: Router) { }
+  constructor(private cartService: CartService, 
+    private router: Router, 
+    private httpClient: HttpClient,
+    private auth: AuthService
+    ) { }
 
-
-  ngOnInit(): void {   
+  ngOnInit(): void {
+    this.httpClient.get(`http://localhost:3000/AngularDef/data/cart/check/${this.auth.getUserId()}/${this.book._id}`).subscribe(res => {
+      this.isInCart = res as any;
+    }) 
   }
   
   details(){
     return this.router.navigate([`/books/${this.book._id}`])
   }
   
- 
   addToCart(){
-    return this.cartService.add(this.book); 
+    this.cartService.add(this.book); 
+    return this.isInCart = true;
+
   };
 
   removeFromCart(){
-    this.isInCart = false;
     this.cartService.remove(this.book);
-  }
+    return this.isInCart = false;
+  };
+
 }

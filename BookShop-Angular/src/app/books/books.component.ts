@@ -10,17 +10,13 @@ import { BooksService } from './books.service';
 export class BooksComponent implements OnInit {
 
     books: BookId[] = [];
-    isShowing: boolean = true;
 
     constructor(private booksService: BooksService) { }
 
     ngOnInit(): void {
         this.booksService.getBooks().subscribe(res => {
-            this.books = res as BookId[];      
-        })           
+            this.books = res as BookId[];
+        })          
     }
 
-    toggleBooks(){
-        this.isShowing = !this.isShowing
-    };
 }
