@@ -7,7 +7,7 @@
 <div *ngIf="isOwner">
     <P>[IF OWNER EDIT AND DELETE]</P>
     <button (click)="onEditClick()">Edit</button>
-    <button>Delete</button>
+    <button (click)="onDeleteClick()">Delete</button>
 </div>
 <div *ngIf="!isOwner">
     <button>Remove From Cart</button>

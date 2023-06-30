@@ -8,11 +8,13 @@ import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { CreateComponent } from './books/create/create.component';
 import { DetailsComponent } from './books/details/details.component';
+import { EditComponent } from './books/edit/edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'books', component: BooksComponent },
   { path: 'books/:id', component: DetailsComponent },
+  { path: 'edit/:id', component: EditComponent },
   { path: 'create', component: CreateComponent },
   { path: 'cart', component: CartComponent, canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent },

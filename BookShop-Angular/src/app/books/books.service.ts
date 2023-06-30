@@ -29,7 +29,8 @@ export class BooksService {
     })
   }; 
 
-  editBook(book: Book){
-    
+  editBook(book: Book, params: string){
+    const data = Object.assign(book, {ownerId: this.auth.getUserId()});
+    return this.httpClient.put(`http://localhost:3000/AngularDef/data/${params}`, data).subscribe()
   }
 }
