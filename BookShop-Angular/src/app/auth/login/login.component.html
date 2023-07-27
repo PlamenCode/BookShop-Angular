@@ -25,7 +25,8 @@
             />
         </div>
 
-        <div *ngIf="email.invalid && (password.dirty || password.touched)">Invalid Email or Password</div>
+        <div *ngIf="email.invalid && (password.dirty || password.touched)">All fields are required</div>
+        <div *ngIf="hasError">Invalid Email or Password</div>
 
         <div>
             <button [disabled]="loginForm.invalid" type="submit">

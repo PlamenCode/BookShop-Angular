@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
+  loginError = undefined as any;
+  registerError = undefined as any;
   user: User = {
     email: '',
     uid: ''
@@ -49,15 +51,15 @@ export class AuthService {
         sessionStorage.setItem('userEmail', this.user.email);
         sessionStorage.setItem('userUid', this.user.uid);
 
-
+        this.loginError = undefined;
         this.router.navigate(['/']);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
         this.isAuthenticated = false;
+        console.log('invalid email or password');
+        this.loginError = 'invalid email or password';
       })
-      .finally(() => (this.isLoading = false));
+      .finally(() => { this.isLoading = false });
   }
 
   register(form: RegisterForm) {
@@ -75,11 +77,12 @@ export class AuthService {
       .then((userCredential) => {
         const user = userCredential.user;
         this.isAuthenticated = true;
+
+        this.registerError = undefined;
         this.router.navigate(['/']);
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        this.registerError = true;
         this.isAuthenticated = false;
       })
       .finally(() => (this.isLoading = false));

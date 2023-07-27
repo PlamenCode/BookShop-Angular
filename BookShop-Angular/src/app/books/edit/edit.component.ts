@@ -35,7 +35,7 @@ export class EditComponent implements OnInit{
   constructor(
     private bookService: BooksService, 
     private router: Router, 
-    private authService: AuthService,
+    // private authService: AuthService,
     private route: ActivatedRoute,
     private http: HttpClient,
   ) {}
@@ -60,6 +60,5 @@ export class EditComponent implements OnInit{
     this.bookService.editBook(this.form, this.params);
     this.router.navigate(['/'])
   };
-
 
 }

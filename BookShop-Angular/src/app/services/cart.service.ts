@@ -1,7 +1,8 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Book, BookId } from '../interfaces/Book';
+import { Injectable } from '@angular/core';
+import { BookId } from '../interfaces/Book';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class CartService {
   cart: BookId[] = [];
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
+  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
 
 
   add(book:BookId){
@@ -27,6 +28,6 @@ export class CartService {
 
   remove(book: BookId){ 
     return this.http.delete(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}/${book._id}`).subscribe();
-
   }
+
 }

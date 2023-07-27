@@ -12,7 +12,6 @@
                 required
             />
         </div>
-        <div *ngIf="email.invalid && (email.dirty || email.touched)">Invaid Email</div>
 
 
         <div class="input">
@@ -26,13 +25,12 @@
                 required
             />
         </div>
-        <div *ngIf="password.invalid && (password.dirty || password.touched)">Passwords dont match</div>
 
 
         <div class="input">
             <label for="repass">Repeat-Password</label>
             <input 
-                type="repass" 
+                type="password" 
                 name="repass" 
                 placeholder="******" 
                 [(ngModel)]="form.repass"
@@ -40,7 +38,8 @@
                 required
             />
         </div>
-        <div *ngIf="repass.invalid && (repass.dirty || repass.touched)">Passwords dont match</div>
+        <div *ngIf="(!doMatch) && (password.touched && repass.touched)">Passwords dont match</div>
+        <div *ngIf="repass.invalid && password.invalid && email.invalid && (password.touched && repass.touched && email.touched)">All fields are required</div>
 
 
         <div>

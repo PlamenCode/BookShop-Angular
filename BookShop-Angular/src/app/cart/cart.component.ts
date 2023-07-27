@@ -13,7 +13,11 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit{
   cart: BookId[] = [];
 
-  constructor(private cartService: CartService, private http: HttpClient, private auth: AuthService, private router: Router) { }
+  constructor(private cartService: CartService, private http: HttpClient, private auth: AuthService, private router: Router) {
+      this.http.get(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}`).subscribe(res => {
+      this.cart = res as any;
+    })
+   }
   
 
   ngOnInit(): void {
@@ -28,5 +32,7 @@ export class CartComponent implements OnInit{
     this.cart = this.cart.filter(x => x !== book);
   }
 
-
+  details(book: BookId){
+    this.router.navigate([`/books/${book._id}`]);
+  }
 }

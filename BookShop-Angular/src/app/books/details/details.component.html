@@ -1,16 +1,26 @@
-<h1>{{bookDetails.name}} DETAILS</h1>
-<p>{{bookDetails.author}}</p>
-<img src="{{bookDetails.img}}" alt="">
-<p>{{bookDetails.price}}</p>
-<p>{{bookDetails.description}}</p>
+<div class="content">
 
-<div *ngIf="isOwner">
-    <P>[IF OWNER EDIT AND DELETE]</P>
-    <button (click)="onEditClick()">Edit</button>
-    <button (click)="onDeleteClick()">Delete</button>
-</div>
-<div *ngIf="!isOwner">
-    <button>Remove From Cart</button>
-</div>
+    <div class="container">
+        <img src="{{bookDetails.img}}" alt="">
+    </div>
 
+    <div class="container">
+
+        <h1>DETAILS about "{{bookDetails.name}}"</h1>
+        <p>Author: {{bookDetails.author}}</p>
+        <p>Price: {{bookDetails.price}}</p>
+        <p>Description: {{bookDetails.description}}</p>
+        
+        <div class="buttons" *ngIf="isOwner">
+            <button (click)="onEditClick()">Edit</button>
+            <button (click)="onDeleteClick()">Delete</button>
+        </div>
+        <div class="buttons" *ngIf="!isOwner && isUser">
+            <button (click)="onRemoveClick(bookDetails)">Remove From Cart</button>
+        </div>
+
+    </div>
+</div>
+    
+    
 

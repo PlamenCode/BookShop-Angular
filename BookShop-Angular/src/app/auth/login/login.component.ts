@@ -7,7 +7,9 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
+
 export class LoginComponent {
+  hasError = false;
   form: LoginForm = {
     email: '',
     password: '',
@@ -15,9 +17,11 @@ export class LoginComponent {
 
   constructor(private authService: AuthService) { }
 
-
   submit() {
     this.authService.login(this.form);
+    if(!this.authService.loginError){
+      this.hasError = true;
+    }
   }
 
   isLoading(){

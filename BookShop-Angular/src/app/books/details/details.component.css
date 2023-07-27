@@ -1,0 +1,43 @@
+.content{
+    padding: 40px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+    overflow: hidden;
+    min-height: 100vh;
+}
+img{
+    object-fit: fill;
+    max-width: 100%;
+}
+.container{
+    width: 40%;
+}
+.container:nth-child(2){
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.container:nth-child(2){
+    text-align: center;
+}
+p{
+    font-size: 20px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+button{
+    background-color: rgba(217, 121, 255, 0.788);
+    color: rgb(136, 0, 248);;
+    border: none;
+    width: 20%;
+    border-radius: 10px;
+    padding: 8px 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.438);
+}
+button:hover{
+    transform: scale(1.125); 
+    transition: all .3s ease; 
+}
