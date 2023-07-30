@@ -16,8 +16,6 @@ export class BooksService {
   };
 
   createBook(book: Book){
-    console.log(book);
-    
     let body = {
       book: book,
       user: this.auth.user
@@ -26,20 +24,20 @@ export class BooksService {
   };
 
   checkBook(book: BookId){
-    return this.httpClient.get(`http://localhost:3000/AngularDef/cart/check/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
-      if(res == true){
-        return true;
-      } else {
-        return false
-      }
-    })
+    if(this.auth.isAuthenticated){ 
+      return this.httpClient.get(`http://localhost:3000/AngularDef/cart/check/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
+        if(res == true){
+          return true;
+        } else {
+          return false
+        }
+      })
+    } else{
+      return false;
+    }
   }; 
 
   editBook(book: Book, params: string){
-    console.log(book);
-    console.log(this.auth.user);
-    
-    
     const data = {
       book,
       user: this.auth.user

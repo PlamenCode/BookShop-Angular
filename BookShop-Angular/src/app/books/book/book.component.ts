@@ -23,9 +23,13 @@ export class BookComponent implements OnInit{
     ) { }
 
   ngOnInit(): void {
-    this.httpClient.get(`http://localhost:3000/AngularDef/data/cart/check/${this.auth.getUserId()}/${this.book._id}`).subscribe(res => {
-      this.isInCart = res as any;
-    }) 
+    if(this.auth.isAuthenticated){
+      this.httpClient.get(`http://localhost:3000/AngularDef/cart/check/${this.auth.getUserId()}/${this.book._id}`).subscribe(res => {
+        this.isInCart = res as any;
+      }) 
+    } else{
+      this.isInCart = false;
+    }
   }
   
   details(){
@@ -33,8 +37,12 @@ export class BookComponent implements OnInit{
   }
   
   addToCart(){
-    this.cartService.add(this.book); 
-    return this.isInCart = true;
+    if(this.auth.isAuthenticated){
+      this.cartService.add(this.book); 
+      return this.isInCart = true;
+    } else{
+      return this.router.navigate(['/login'])
+    }
 
   };
 

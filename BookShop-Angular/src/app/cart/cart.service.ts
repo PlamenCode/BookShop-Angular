@@ -14,9 +14,13 @@ export class CartService {
 
 
   add(book:BookId){
-    return this.http.get(`http://localhost:3000/AngularDef/cart/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
-      return res;
-    })
+    if(this.auth.isAuthenticated){  
+      return this.http.get(`http://localhost:3000/AngularDef/cart/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
+        return res;
+      })
+    } else {
+      return;
+    }
   }
 
   get(){
