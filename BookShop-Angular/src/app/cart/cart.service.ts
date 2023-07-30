@@ -14,20 +14,20 @@ export class CartService {
 
 
   add(book:BookId){
-    return this.http.get(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
+    return this.http.get(`http://localhost:3000/AngularDef/cart/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
       return res;
     })
   }
 
   get(){
-    return this.http.get(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}`).subscribe(res => {
+    return this.http.get(`http://localhost:3000/AngularDef/cart/${this.auth.getUserId()}`).subscribe(res => {
       this.cart = res as any;
       return res;
     })
   }
 
   remove(book: BookId){ 
-    return this.http.delete(`http://localhost:3000/AngularDef/data/cart/${this.auth.getUserId()}/${book._id}`).subscribe();
+    return this.http.delete(`http://localhost:3000/AngularDef/cart/${this.auth.getUserId()}/${book._id}`).subscribe();
   }
 
 }

@@ -13,8 +13,8 @@ import { EditComponent } from './books/edit/edit.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'books', component: BooksComponent },
-  { path: 'books/:id', component: DetailsComponent },
-  { path: 'edit/:id', component: EditComponent },
+  { path: 'books/:id', component: DetailsComponent, canActivate:[AuthGuard] },
+  { path: 'edit/:id', component: EditComponent, canActivate:[AuthGuard] },
   { path: 'create', component: CreateComponent },
   { path: 'cart', component: CartComponent, canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent },

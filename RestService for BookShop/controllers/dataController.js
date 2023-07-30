@@ -1,5 +1,4 @@
 const { hasUser } = require('../middlewares/guards');
-const { getUserCart, getAllBooksInCart, addToCart, removeFromCart, checkBookInCart } = require('../services/cartService');
 const { getAll, createItem, getById, deleteById, updateItem } = require('../services/itemService');
 const parseError = require('../utils/parser');
 

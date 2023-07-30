@@ -22,7 +22,7 @@ async function start() {
     app.use(trimBody());
 
     app.use('/AngularDef/data', dataController);
-    app.use('/AngularDef/data/cart', cartController);
+    app.use('/AngularDef/cart', cartController);
 
 
     app.get('*', (req, res) => {

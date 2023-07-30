@@ -26,7 +26,7 @@ export class BooksService {
   };
 
   checkBook(book: BookId){
-    return this.httpClient.get(`http://localhost:3000/AngularDef/data/cart/check/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
+    return this.httpClient.get(`http://localhost:3000/AngularDef/cart/check/${this.auth.getUserId()}/${book._id}`).subscribe(res => {
       if(res == true){
         return true;
       } else {
