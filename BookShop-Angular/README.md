@@ -46,7 +46,7 @@ Access the application in your web browser:
 7.Cart: Users can add books from the catalog to their Cart for future reference.
 
 # Technologies Used
-1.Frontend: HTML, CSS, JavaScript (Angular)
+1.Frontend: HTML, CSS, TS, Angular
 
 2.Backend: Node.js, Express.js
 
