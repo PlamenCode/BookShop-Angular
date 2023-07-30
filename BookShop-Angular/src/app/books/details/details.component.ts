@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Book, BookId } from 'src/app/interfaces/Book';
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from 'src/app/cart/cart.service';
 import { BooksService } from '../books.service';
 
 @Component({

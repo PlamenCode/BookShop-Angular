@@ -1,52 +1,46 @@
-<!-- <h1>Edit your Book Offer</h1>
-
-<form action="" (ngSubmit)="submitDatabase()" #editForm="ngForm">
-    <label for="name">Book Name</label>
-    <input type="text" name="name" placeholder="Book name" [(ngModel)]="form.name" #name="ngModel" required >
-
-    <label for="author">Author</label>
-    <input type="text" name="author" placeholder="Author" [(ngModel)]="form.author" #author="ngModel" required>
-
-    <label for="img">Image Url</label>
-    <input type="text" name="img" placeholder="https://..." [(ngModel)]="form.img" #img="ngModel" required>
-
-    <label for="price">Price</label>
-    <input type="number" name="price" placeholder="Price" [(ngModel)]="form.price" #price="ngModel" required>
-
-    <label for="description">Description</label>
-    <textarea type="text" name="description" placeholder="Description" [(ngModel)]="form.description" #description="ngModel" required ></textarea>
-
-    <button [disabled]="editForm.invalid" type="submit">Post Your Offer</button>
-</form> -->
-
 <section class="content">
     <h1>Edit your Book Offer</h1>
 
     <form action="" (ngSubmit)="submitDatabase()" #editForm="ngForm">
         <div class="input">
             <label for="name">Book Name</label>
-            <input type="text" name="name" placeholder="Book name" [(ngModel)]="form.name" #name="ngModel" required >
+            <input type="text" name="name" placeholder="Book name" 
+            [(ngModel)]="form.name" #name="ngModel" required minlength="4">
         </div>
+        <span *ngIf="name.errors?.['required'] && name.touched || name.errors?.['minlength']">Name is required with minimum of 4 charecters</span>
+
         
         <div class="input">
             <label for="author">Author</label>
-            <input type="text" name="author" placeholder="Author" [(ngModel)]="form.author" #author="ngModel" required>
+            <input type="text" name="author" placeholder="Author" 
+            [(ngModel)]="form.author" #author="ngModel" required minlength="3" >
         </div>
+        <span *ngIf="author.errors?.['required'] && author.touched">Author is required with minimum of 3 charecters </span>
         
+
         <div class="input">
             <label for="img">Image Url</label>
-            <input type="text" name="img" placeholder="https://..." [(ngModel)]="form.img" #img="ngModel" required>
+            <input type="text" name="img" placeholder="https://..." 
+            [(ngModel)]="form.img" #img="ngModel" required>
         </div>
+        <span *ngIf="img.errors?.['required'] && img.touched">Image Url is required</span>
+
         
         <div class="input">
             <label for="price">Price</label>
-            <input type="number" name="price" placeholder="Price" [(ngModel)]="form.price" #price="ngModel" required>
+            <input type="number" name="price" placeholder="Price" 
+            [(ngModel)]="form.price" #price="ngModel" required min="1" >
         </div>
+        <span *ngIf="price.errors?.['required'] || (price.touched && price.errors?.['min'])">Minimum Price is 1$</span>
+
         
         <div class="input">
             <label for="description">Description</label>
-            <textarea type="text" name="description" placeholder="Description" [(ngModel)]="form.description" #description="ngModel" required ></textarea>
+            <textarea type="text" name="description" placeholder="Description" 
+            [(ngModel)]="form.description" #description="ngModel" required minlength="10"></textarea>
         </div>
+        <span *ngIf="description.errors?.['required'] && description.touched || description.errors?.['minlength']">Minimum Description length is 10 charecters</span>
+        
         
         <button [disabled]="editForm.invalid" type="submit">Post Your Offer</button>
     </form>

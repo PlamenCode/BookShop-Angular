@@ -9,7 +9,7 @@
 .content form{
     background-color: #7d5ba6;
     border-radius: 30px;
-    height: 85%;
+    height: 100%;
     width: 30%;
     align-items: center;
     text-align: center;
@@ -39,10 +39,15 @@ input{
     border: 0px;
     padding: 10px;
 }
+span{
+    display: block;
+    color: rgb(255, 102, 0);
+}
 
 button{
     border: none;
     padding: 12px 24px;
+    margin-top: 20px;
     border-radius: 24px;
     font-size: 12px;
     font-size: 0.8rem;  
@@ -66,5 +71,4 @@ textarea{
     font-size: 16px;
     resize: none;
     border-radius: 6px;
-    margin-bottom: 20px;
   }

@@ -19,6 +19,10 @@
     rgba(71, 69, 69, 0.2) 0px 12px 13px, 
     rgba(71, 69, 69, 0.2) 0px -3px 5px;
 }
+span{
+    display: block;
+    color: rgb(255, 102, 0);
+}
 
 .content h1{
     font-size: 40px;

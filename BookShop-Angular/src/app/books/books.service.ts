@@ -16,6 +16,8 @@ export class BooksService {
   };
 
   createBook(book: Book){
+    console.log(book);
+    
     let body = {
       book: book,
       user: this.auth.user
@@ -34,15 +36,22 @@ export class BooksService {
   }; 
 
   editBook(book: Book, params: string){
-    const data = Object.assign(book, {ownerId: this.auth.getUserId()});
+    console.log(book);
+    console.log(this.auth.user);
+    
+    
+    const data = {
+      book,
+      user: this.auth.user
+    }
+    // const data = Object.assign(book, {ownerId: this.auth.getUserId()});
     return this.httpClient.put(`http://localhost:3000/AngularDef/data/${params}`, data).subscribe()
   };
 
   deleteBok(book: BookId){
-    const body = { 
-      user: {
-        _id: this.auth.getUserId() }
+    const data = { 
+      user: this.auth.user
       };
-    return this.httpClient.delete(`http://localhost:3000/AngularDef/data/${book._id}`, { body }).subscribe();
-  }
+    return this.httpClient.delete(`http://localhost:3000/AngularDef/data/${book._id}`,  { body:data } ).subscribe();
+  };
 }

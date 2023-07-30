@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { CartService } from '../services/cart.service';
+import { CartService } from './cart.service';
 import { BookId } from '../interfaces/Book';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';

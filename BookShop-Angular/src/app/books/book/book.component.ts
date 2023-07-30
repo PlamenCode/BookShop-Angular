@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Book, BookId } from '../../interfaces/Book';
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from 'src/app/cart/cart.service';
 import { BooksService } from '../books.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';

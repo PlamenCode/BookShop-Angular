@@ -20,12 +20,10 @@ export class CreateComponent {
 
   constructor(private bookService: BooksService, private authService: AuthService, private router: Router) { }
 
-  // submit(){
-  //   this.bookService.createBook(this.form);
-  // }
-  submitDatabase(){ 
-    console.log(this.form);
-    
+  submitDatabase(){
+    if(this.form.name == '' || this.form.author == '' || this.form.img == '' || this.form.price == 0 || this.form.description == ''){
+      return;
+    }
     this.bookService.createBook(Object.assign(this.form, {ownerId: this.authService.getUserId()}));
     this.router.navigate(['/'])
   }
