@@ -21,17 +21,25 @@ export class CartService {
     } else {
       return;
     }
-  }
+  };
 
   get(){
     return this.http.get(`http://localhost:3000/AngularDef/cart/${this.auth.getUserId()}`).subscribe(res => {
       this.cart = res as any;
       return res;
     })
-  }
+  };
 
   remove(book: BookId){ 
     return this.http.delete(`http://localhost:3000/AngularDef/cart/${this.auth.getUserId()}/${book._id}`).subscribe();
-  }
+  };
+
+  isItInCart(book: BookId){ 
+    if(this.cart.includes(book)){
+      return true;
+    } else {
+      return false;
+    }
+  };
 
 }

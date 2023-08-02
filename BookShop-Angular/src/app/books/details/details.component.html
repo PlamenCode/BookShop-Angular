@@ -11,17 +11,23 @@
         <p>Price: {{bookDetails.price}}</p>
         <p>Description: {{bookDetails.description}}</p>
         
-        <div class="buttons" *ngIf="isOwner">
+        <div class="buttons" *ngIf="isItOwner()">
             <button (click)="onEditClick()">Edit</button>
             <button (click)="onDeleteClick()">Delete</button>
         </div>
-        <div class="buttons" *ngIf="!isOwner && isUser && isInCart">
-            <button (click)="onRemoveClick(bookDetails)">Remove From Cart</button>
-        </div>
-        <div class="buttons" *ngIf="!isOwner && isUser && !isInCart">
-            <button (click)="onAddClick(bookDetails)">Add To Cart</button>
-        </div>
 
+        <div class="buttons" *ngIf="!isItOwner()">
+            <button 
+                *ngIf="!isItOwner() && isUser && isInCart" 
+                (click)="onRemoveClick(bookDetails)"
+            >Remove From Cart</button>
+            
+            <button
+                *ngIf="!isItOwner() && isUser && !isInCart" 
+                (click)="onAddClick(bookDetails)"
+            >Add To Cart</button>
+        </div>
+        
     </div>
 </div>
     

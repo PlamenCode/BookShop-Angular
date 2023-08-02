@@ -17,35 +17,53 @@ export class DetailsComponent implements OnInit, OnDestroy {
   private routeSub = Subscription as any;
   bookDetails: BookId = undefined as any;
   isUser: boolean = false;
-  isOwner: boolean = false;
   isInCart: boolean = false;
   routeId: string = '';
 
   constructor(
     private route: ActivatedRoute, 
-    private http: HttpClient,
     private auth: AuthService,
     private router: Router,
     private cartService: CartService,
-    private bookService: BooksService
-    ) {  }
+    private bookService: BooksService,
+    ) { }
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
+  //   if(this.auth.getUserId()){
+  //     this.isUser = true;
+  //   }
+  //   this.routeSub = this.route.params.subscribe(params => {
+  //   this.routeId = params['id'];
+  //   this.http.get(`http://localhost:3000/AngularDef/data/${params['id']}`).subscribe(
+  //     res => { 
+  //       this.bookDetails = res as BookId;
+  //       if(this.bookDetails.ownerId == this.auth.getUserId()){
+  //         this.isOwner = true;
+  //       }
+  //     })
+  //   });
+  // }
+
+ async ngOnInit() {
     if(this.auth.getUserId()){
-      this.isUser = true;
-    }
+        this.isUser = true;
+    };
     this.routeSub = this.route.params.subscribe(params => {
-    this.routeId = params['id'];
-    this.http.get(`http://localhost:3000/AngularDef/data/${params['id']}`).subscribe(
-      res => { 
-        this.bookDetails = res as BookId;
-        if(this.bookDetails.ownerId == this.auth.getUserId()){
-          this.isOwner = true;
-        }
-      })
-    });
+        this.routeId = params['id'];
+    }); 
+    this.bookService.getBook(this.routeId).subscribe(res => {
+        this.bookDetails = res as any
+    }); 
+	this.bookService.checkBook(this.routeId).subscribe(res => {
+		this.isInCart = res as any;
+	});
   }
 
+  isItOwner(){
+    return this.bookDetails.ownerId == this.auth.getUserId() ? true : false;
+  };
+
+  
   ngOnDestroy() {
     this.routeSub.unsubscribe();
   };
@@ -61,11 +79,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   onRemoveClick(book: BookId){
     this.cartService.remove(book);
-    this.router.navigate(['/cart']);
+	this.isInCart = false;
   };
   
   onAddClick(book: BookId){
     this.cartService.add(book);
-    this.router.navigate(['/cart'])
+	this.isInCart = true;
   }
 }
