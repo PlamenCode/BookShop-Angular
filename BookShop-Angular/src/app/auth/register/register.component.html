@@ -11,6 +11,7 @@
                 #email="ngModel"
                 required
             />
+            <span *ngIf="email.errors?.['required'] && email.touched">Email is required</span>
         </div>
 
 
@@ -37,9 +38,9 @@
                 #repass="ngModel"
                 required
             />
+            <div *ngIf="(!doMatch) && (password.touched && repass.touched)">Passwords don't match</div>
+            <div *ngIf="repass.invalid && password.invalid && email.invalid && (password.touched && repass.touched && email.touched)">All fields are required</div>
         </div>
-        <div *ngIf="(!doMatch) && (password.touched && repass.touched)">Passwords dont match</div>
-        <div *ngIf="repass.invalid && password.invalid && email.invalid && (password.touched && repass.touched && email.touched)">All fields are required</div>
 
 
         <div>

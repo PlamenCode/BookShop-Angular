@@ -15,8 +15,11 @@
             <button (click)="onEditClick()">Edit</button>
             <button (click)="onDeleteClick()">Delete</button>
         </div>
-        <div class="buttons" *ngIf="!isOwner && isUser">
+        <div class="buttons" *ngIf="!isOwner && isUser && isInCart">
             <button (click)="onRemoveClick(bookDetails)">Remove From Cart</button>
+        </div>
+        <div class="buttons" *ngIf="!isOwner && isUser && !isInCart">
+            <button (click)="onAddClick(bookDetails)">Add To Cart</button>
         </div>
 
     </div>

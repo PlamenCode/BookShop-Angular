@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginForm } from 'src/app/interfaces/Auth';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
     password: '',
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private cartService: CartService) { }
 
   submit() {
     this.authService.login(this.form);

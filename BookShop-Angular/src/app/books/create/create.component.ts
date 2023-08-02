@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { createForm } from 'src/app/interfaces/Book';
-import { BooksService } from '../books.service';
-import { AuthService } from 'src/app/auth/auth.service';
+import { BooksService } from '../../services/books.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router'
 
 @Component({

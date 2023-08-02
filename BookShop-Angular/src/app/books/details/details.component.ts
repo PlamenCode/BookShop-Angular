@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Book, BookId } from 'src/app/interfaces/Book';
-import { CartService } from 'src/app/cart/cart.service';
-import { BooksService } from '../books.service';
+import { CartService } from 'src/app/services/cart.service';
+import { BooksService } from '../../services/books.service';
 
 @Component({
   selector: 'app-details',
@@ -18,6 +18,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   bookDetails: BookId = undefined as any;
   isUser: boolean = false;
   isOwner: boolean = false;
+  isInCart: boolean = false;
   routeId: string = '';
 
   constructor(
@@ -42,7 +43,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
           this.isOwner = true;
         }
       })
-   });
+    });
   }
 
   ngOnDestroy() {
@@ -61,5 +62,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
   onRemoveClick(book: BookId){
     this.cartService.remove(book);
     this.router.navigate(['/cart']);
+  };
+  
+  onAddClick(book: BookId){
+    this.cartService.add(book);
+    this.router.navigate(['/cart'])
   }
 }

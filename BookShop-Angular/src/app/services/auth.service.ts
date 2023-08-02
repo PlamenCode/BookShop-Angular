@@ -25,6 +25,8 @@ export class AuthService {
       this.user.uid = sessionStorage.getItem('userUid') as any;
     }
   }
+
+  
   
   getUserId(){ 
     return this.user.uid;

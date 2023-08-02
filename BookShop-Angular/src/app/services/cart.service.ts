@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BookId } from '../interfaces/Book';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
 @Injectable({

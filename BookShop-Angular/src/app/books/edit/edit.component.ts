@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookId, createForm } from 'src/app/interfaces/Book';
-import { BooksService } from '../books.service';
+import { BooksService } from '../../services/books.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 

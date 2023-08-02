@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Book, BookId } from '../interfaces/Book';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from './auth.service';
+import { CartService } from './cart.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 
-  constructor(private router: Router, private httpClient: HttpClient, private auth: AuthService) { }
+  constructor(private router: Router, private httpClient: HttpClient, private auth: AuthService, private cartService: CartService) { }
 
   getBooks(){
     return this.httpClient.get('http://localhost:3000/AngularDef/data');
@@ -52,4 +53,5 @@ export class BooksService {
       };
     return this.httpClient.delete(`http://localhost:3000/AngularDef/data/${book._id}`,  { body:data } ).subscribe();
   };
+
 }

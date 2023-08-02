@@ -6,7 +6,7 @@
         <p>{{ book.price | currency : "USD" }}</p>
     </div>
     <div class="button-wrapper">
-        <button *ngIf="!isInCart" (click)="addToCart()" class="btn fill" >Add To Cart</button>
+        <button *ngIf="!isInCart && hasUser" (click)="addToCart()" class="btn fill" >Add To Cart</button>
         <button *ngIf="isInCart" (click)="removeFromCart()" class="btn fill" >Remove from Cart</button>
         <button (click)="details()" class="btn outline">Details</button>
     </div>

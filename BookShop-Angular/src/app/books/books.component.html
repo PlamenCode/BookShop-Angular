@@ -1,8 +1,13 @@
 <h2>Book Library</h2>
 
 <ul>
-    <ng-container *ngFor="let SingleBook of books">
-       <app-book [book]="SingleBook" ></app-book>
+    <ng-container *ngIf="books.length > 0" >
+        <ng-container *ngFor="let SingleBook of books">
+            <app-book [book]="SingleBook"></app-book>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="books.length == 0" >
+       <h1>There are no books added yet.</h1>
     </ng-container>
 </ul>
 
