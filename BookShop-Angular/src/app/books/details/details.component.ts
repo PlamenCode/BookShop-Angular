@@ -3,87 +3,88 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { Book, BookId } from 'src/app/interfaces/Book';
+import { BookId } from 'src/app/interfaces/Book';
 import { CartService } from 'src/app/services/cart.service';
 import { BooksService } from '../../services/books.service';
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+    selector: 'app-details',
+    templateUrl: './details.component.html',
+    styleUrls: ['./details.component.css'],
 })
 export class DetailsComponent implements OnInit, OnDestroy {
+    private routeSub = Subscription as any;
+    bookDetails: BookId = undefined as any;
+    isUser: boolean = false;
+    isInCart: boolean = false;
+    routeId: string = '';
+    errorMsg: string = ''; 
 
-  private routeSub = Subscription as any;
-  bookDetails: BookId = undefined as any;
-  isUser: boolean = false;
-  isInCart: boolean = false;
-  routeId: string = '';
-
-  constructor(
-    private route: ActivatedRoute, 
-    private auth: AuthService,
-    private router: Router,
-    private cartService: CartService,
-    private bookService: BooksService,
+    constructor(
+        private route: ActivatedRoute,
+        private auth: AuthService,
+        private router: Router,
+        private cartService: CartService,
+        private bookService: BooksService
     ) { }
 
-  // ngOnInit(): void {
-  //   if(this.auth.getUserId()){
-  //     this.isUser = true;
-  //   }
-  //   this.routeSub = this.route.params.subscribe(params => {
-  //   this.routeId = params['id'];
-  //   this.http.get(`http://localhost:3000/AngularDef/data/${params['id']}`).subscribe(
-  //     res => { 
-  //       this.bookDetails = res as BookId;
-  //       if(this.bookDetails.ownerId == this.auth.getUserId()){
-  //         this.isOwner = true;
-  //       }
-  //     })
-  //   });
-  // }
+    // ngOnInit(): void {
+    //   if(this.auth.getUserId()){
+    //     this.isUser = true;
+    //   }
+    //   this.routeSub = this.route.params.subscribe(params => {
+    //   this.routeId = params['id'];
+    //   this.http.get(`http://localhost:3000/AngularDef/data/${params['id']}`).subscribe(
+    //     res => {
+    //       this.bookDetails = res as BookId;
+    //       if(this.bookDetails.ownerId == this.auth.getUserId()){
+    //         this.isOwner = true;
+    //       }
+    //     })
+    //   });
+    // }
 
- async ngOnInit() {
-    if(this.auth.getUserId()){
-        this.isUser = true;
-    };
-    this.routeSub = this.route.params.subscribe(params => {
-        this.routeId = params['id'];
-    }); 
-    this.bookService.getBook(this.routeId).subscribe(res => {
-        this.bookDetails = res as any
-    }); 
-	this.bookService.checkBook(this.routeId).subscribe(res => {
-		this.isInCart = res as any;
-	});
-  }
+    ngOnInit() {
+        this.routeSub = this.route.params.subscribe((params) => {
+            this.routeId = params['id'];
+        });
+        this.bookService.getBook(this.routeId).subscribe(
+            res =>  this.bookDetails = res as any,
+            error => this.errorMsg = error.error.message
+        );  
 
-  isItOwner(){
-    return this.bookDetails.ownerId == this.auth.getUserId() ? true : false;
-  };
+        if (this.auth.getUserId()) {
+            this.isUser = true;
+            this.bookService.checkBook(this.routeId).subscribe((res) => {
+                this.isInCart = res as any;
+            });
+        }
+    }
 
-  
-  ngOnDestroy() {
-    this.routeSub.unsubscribe();
-  };
+    isItOwner() {
+        return this.bookDetails.ownerId == this.auth.getUserId() ? true : false;
+    }
 
-  onEditClick(){
-    return this.router.navigate([`/edit/${this.routeId}`]);
-  };
+    ngOnDestroy() {
+        this.routeSub.unsubscribe();
+    }
 
-  onDeleteClick(){
-    this.bookService.deleteBok(this.bookDetails);
-    return this.router.navigate(['/books']);
-  };
+    onEditClick() {
+        return this.router.navigate([`/edit/${this.routeId}`]);
+    }
 
-  onRemoveClick(book: BookId){
-    this.cartService.remove(book);
-	this.isInCart = false;
-  };
-  
-  onAddClick(book: BookId){
-    this.cartService.add(book);
-	this.isInCart = true;
-  }
+    onDeleteClick() {
+        this.bookService.deleteBok(this.bookDetails);
+        return this.router.navigate(['/books']);
+    }
+
+    onRemoveClick(book: BookId) {
+        this.cartService.remove(book);
+        this.isInCart = false;
+    }
+
+    onAddClick(book: BookId) {
+        this.cartService.add(book);
+        this.isInCart = true;
+    }
 }
