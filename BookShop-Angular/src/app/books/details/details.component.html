@@ -1,5 +1,11 @@
 <div class="content">
 
+
+    <ng-container *ngIf="errorMsg.length > 0"> 
+        <h1>{{errorMsg}}</h1> 
+    </ng-container>
+
+    <ng-container *ngIf="errorMsg.length == 0">
     <div class="container">
         <img src="{{bookDetails.img}}" alt="">
     </div>
@@ -29,6 +35,7 @@
         </div>
         
     </div>
+    </ng-container>
 </div>
     
     

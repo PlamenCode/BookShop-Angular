@@ -20,8 +20,13 @@ dataController.post('/', hasUser(),  async (req, res) => {
 });
 
 dataController.get('/:id', async (req, res) => {
-    const item = await getById(req.params.id);
-    res.json(item)
+    try { 
+        const item = await getById(req.params.id);
+        res.json(item)
+    } catch (error) {
+        const message = `Item with ID: ${error.value} was not found.`
+        res.status(400).json({ message });
+    }
 });
 
 dataController.put('/:id', hasUser(),  async (req, res) => {

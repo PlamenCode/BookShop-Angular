@@ -3,6 +3,7 @@ import { Book, BookId } from '../interfaces/Book';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +18,11 @@ export class BooksService {
   };
 
   getBook(routeId: string) {
-    return this.httpClient.get(`http://localhost:3000/AngularDef/data/${routeId}`);
+    try {
+        return this.httpClient.get(`http://localhost:3000/AngularDef/data/${routeId}`)
+    } catch (error: any) {
+        throw new Error(error.message);
+    }
   };
 
   createBook(book: Book) {
@@ -54,4 +59,5 @@ export class BooksService {
       .delete(`http://localhost:3000/AngularDef/data/${book._id}`, { body: data })
       .subscribe();
   };
+
 }
