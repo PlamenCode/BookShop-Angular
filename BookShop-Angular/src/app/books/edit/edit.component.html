@@ -2,6 +2,8 @@
     <h1>Edit your Book Offer</h1>
 
     <form action="" (ngSubmit)="submitDatabase()" #editForm="ngForm">
+        <span *ngIf="hasError">{{errorMsg}}</span>
+        
         <div class="input">
             <label for="name">Book Name</label>
             <input type="text" name="name" placeholder="Book name" 

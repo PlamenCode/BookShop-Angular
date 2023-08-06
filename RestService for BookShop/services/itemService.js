@@ -9,12 +9,8 @@ async function getById(id){
     return Item.findById(id);
 };
 
-async function createItem(itemData){
-    try {
-        Item.create(itemData);
-    } catch (error) {
-        console.log(error);
-    }
+async function createItem(book){
+    return Item.create(book);
 };
 
 async function updateItem(itemId, itemData){

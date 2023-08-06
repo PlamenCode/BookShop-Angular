@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Book, BookId } from '../interfaces/Book';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -11,6 +12,7 @@ export class BooksService {
   constructor(
     private httpClient: HttpClient,
     private auth: AuthService,
+    private router: Router,
   ) {}
 
   getBooks() {
@@ -30,9 +32,7 @@ export class BooksService {
       book: book,
       user: this.auth.user,
     };
-    return this.httpClient
-      .post('http://localhost:3000/AngularDef/data', body)
-      .subscribe();
+      return this.httpClient.post('http://localhost:3000/AngularDef/data', body)
   };
 
   checkBook(bookId: string) {
@@ -48,7 +48,6 @@ export class BooksService {
     // const data = Object.assign(book, {ownerId: this.auth.getUserId()});
     return this.httpClient
       .put(`http://localhost:3000/AngularDef/data/${params}`, data)
-      .subscribe();
   };
 
   deleteBok(book: BookId) {
@@ -57,7 +56,6 @@ export class BooksService {
     };
     return this.httpClient
       .delete(`http://localhost:3000/AngularDef/data/${book._id}`, { body: data })
-      .subscribe();
   };
 
 }

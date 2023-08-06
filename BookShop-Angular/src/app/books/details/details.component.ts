@@ -28,21 +28,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
         private bookService: BooksService
     ) { }
 
-    // ngOnInit(): void {
-    //   if(this.auth.getUserId()){
-    //     this.isUser = true;
-    //   }
-    //   this.routeSub = this.route.params.subscribe(params => {
-    //   this.routeId = params['id'];
-    //   this.http.get(`http://localhost:3000/AngularDef/data/${params['id']}`).subscribe(
-    //     res => {
-    //       this.bookDetails = res as BookId;
-    //       if(this.bookDetails.ownerId == this.auth.getUserId()){
-    //         this.isOwner = true;
-    //       }
-    //     })
-    //   });
-    // }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {

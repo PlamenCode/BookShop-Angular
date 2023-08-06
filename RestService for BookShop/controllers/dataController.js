@@ -11,9 +11,21 @@ dataController.get('/', async(req, res) =>{
 
 dataController.post('/', hasUser(),  async (req, res) => {
     try {
-        const item = await createItem(req.body.book);
+        const book = {
+            name: req.body.book.name,
+            author: req.body.book.author,
+            img: req.body.book.img,
+            price: Number(req.body.book.price),
+            description: req.body.book.description,
+            ownerId: req.body.book.ownerId
+        };
+        if(book.name == '' || book.author == '' || book.img == '' || book.price < 1 || book.description == '' || book.ownerId == ''){
+            throw new Error('Invalid information was send')
+        };
+        const item = await createItem(book);
         res.json(item);  
     } catch (err) {
+        console.log(err);
         const message = parseError(err)
         res.status(400).json({ message });
     };

@@ -15,6 +15,7 @@ body{
 
     /* background: rgb(238,174,202);
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(215,103,245,1) 17%, rgba(187,122,168,1) 33%, rgba(244,255,109,1) 56%, rgba(215,103,245,1) 73%, rgba(115,97,230,1) 91%); */
-
-
+}
+.error{
+    color: red;
 }

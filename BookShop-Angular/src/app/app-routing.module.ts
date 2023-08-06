@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateComponent } from './books/create/create.component';
 import { DetailsComponent } from './books/details/details.component';
 import { EditComponent } from './books/edit/edit.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent, canActivate:[AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'error', component: ErrorComponent },
+
 ];
 
 @NgModule({

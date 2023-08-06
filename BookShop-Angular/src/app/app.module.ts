@@ -7,9 +7,10 @@ import { BooksModule } from './books/books.module';
 import { CartComponent } from './cart/cart.component';
 import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
-  declarations: [ AppComponent, CartComponent, HomeComponent ],
+  declarations: [ AppComponent, CartComponent, HomeComponent, ErrorComponent ],
   imports: [ BrowserModule, AppRoutingModule, BooksModule, AuthModule ],
   providers: [  ],
   bootstrap: [ AppComponent ]

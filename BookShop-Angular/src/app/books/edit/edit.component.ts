@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookId, createForm } from 'src/app/interfaces/Book';
 import { BooksService } from '../../services/books.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +12,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit{
+  hasError: boolean = false;
+  errorMsg: string = '';
   private routeSub = Subscription as any;
   params: string = '';
 
@@ -52,13 +54,26 @@ export class EditComponent implements OnInit{
         this.form.img = this.book.img;
         this.form.price = this.book.price;
         this.form.description = this.book.description;
-      })
+      },
+      error => {
+        const navigationExtras: NavigationExtras = {
+          state: {
+            error: error.error.message
+          }
+        }
+        this.router.navigate(['error'], navigationExtras)} 
+      )
    });
   }
 
   submitDatabase(){  
-    this.bookService.editBook(this.form, this.params);
-    this.router.navigate(['/'])
+    this.bookService.editBook(this.form, this.params).subscribe(
+      res => { this.router.navigate(['/']) },
+      error => { 
+        this.hasError = true;
+        this.errorMsg = error.error.message;
+      },
+    );
   };
 
 }
