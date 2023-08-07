@@ -45,17 +45,18 @@ export class BooksService {
       book,
       user: this.auth.user,
     };
-    // const data = Object.assign(book, {ownerId: this.auth.getUserId()});
     return this.httpClient
       .put(`http://localhost:3000/AngularDef/data/${params}`, data)
   };
 
-  deleteBok(book: BookId) {
+  deleteBook(bookId: string) { 
     const data = {
-      user: this.auth.user,
+      body : {
+        user: this.auth.user,
+        itemId: bookId
+      }
     };
-    return this.httpClient
-      .delete(`http://localhost:3000/AngularDef/data/${book._id}`, { body: data })
+    return this.httpClient.delete(`http://localhost:3000/AngularDef/data/${bookId}`, data );
   };
 
 }
