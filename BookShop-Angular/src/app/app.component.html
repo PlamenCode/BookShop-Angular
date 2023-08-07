@@ -8,7 +8,7 @@
     <div class="navButtons">
         <a routerLink="/books">Catalog</a>
         <ng-container *ngIf="isAuthenticated()">
-            <a routerLink="/create">Create Offer</a>
+            <a routerLink="/books/create">Create Offer</a>
             <a routerLink="/cart">Cart</a>
             <button (click)="logout()">Logout</button>
         </ng-container>

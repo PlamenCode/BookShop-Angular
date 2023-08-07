@@ -55,12 +55,14 @@ export class DetailsComponent implements OnInit, OnDestroy {
     }
 
     onEditClick() {
-        return this.router.navigate([`/edit/${this.routeId}`]);
+        return this.router.navigate([`/books/edit/${this.routeId}`]);
     }
 
     onDeleteClick() {
-        this.bookService.deleteBok(this.bookDetails);
-        return this.router.navigate(['/books']);
+        return this.bookService.deleteBook(this.bookDetails._id).subscribe(
+            res => { this.router.navigate(['/books']) },
+            error => { this.router.navigate([`/error`]) }
+        );
     }
 
     onRemoveClick(book: BookId) {

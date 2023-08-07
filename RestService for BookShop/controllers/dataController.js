@@ -60,7 +60,6 @@ dataController.delete('/:id', hasUser(), async (req, res) => {
     if(req.body.user.uid.toString() != item.ownerId.toString()){
         return res.status(403).json({ message: 'You can\'t delete someone\'s records.'})
     };
-
     try {
         await deleteById(req.params.id);
         res.status(204).end();

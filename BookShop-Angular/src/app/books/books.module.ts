@@ -8,12 +8,13 @@ import { DetailsComponent } from './details/details.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditComponent } from './edit/edit.component';
+import { BooksRoutingModule } from './books-routing.module';
 
 
 @NgModule({
   declarations: [BooksComponent, BookComponent, CreateComponent, DetailsComponent, EditComponent],
   providers: [ BooksService ],
-  imports: [ CommonModule, FormsModule, HttpClientModule],
+  imports: [ CommonModule, FormsModule, HttpClientModule, BooksRoutingModule ],
   exports: [ BooksComponent ]
 })
 export class BooksModule { }

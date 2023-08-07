@@ -1,7 +1,7 @@
 function hasUser(){
     return (req, res, next) => {
         if(!req.body.user){
-            console.log(req.body.user);
+            console.log(req.body);
         }
         if(req.body.user){ next() }
         else{ res.status(401).json({ message: 'Please LogIn' }) };
