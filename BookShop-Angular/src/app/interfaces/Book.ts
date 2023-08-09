@@ -4,7 +4,6 @@ export interface Book{
     img: string,
     price: number,
     description: string,
-    // _id: string
 };
 
 export interface BookId{

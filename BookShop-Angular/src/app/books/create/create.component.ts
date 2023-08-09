@@ -28,7 +28,7 @@ export class CreateComponent {
     }
     const data = Object.assign(this.form, {ownerId: this.authService.getUserId()})
     this.bookService.createBook(data).subscribe(
-      res => { this.router.navigate(['/']) },
+      res => { this.router.navigate(['/books']) },
       error => { 
         this.hasError = true;
         this.errorMsg = error.error.message;

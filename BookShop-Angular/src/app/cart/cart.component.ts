@@ -27,7 +27,6 @@ export class CartComponent implements OnInit{
   }
 
   removeFromCart(book: BookId){
-    //TODO REFRESH PAGE TO VISUALIZE TGE CHANGES
     this.http.delete(`http://localhost:3000/AngularDef/cart/${this.auth.getUserId()}/${book._id}`).subscribe();
     this.cart = this.cart.filter(x => x !== book);
   }

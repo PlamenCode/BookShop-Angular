@@ -20,11 +20,7 @@ export class BooksService {
   };
 
   getBook(routeId: string) {
-    try {
-        return this.httpClient.get(`http://localhost:3000/AngularDef/data/${routeId}`)
-    } catch (error: any) {
-        throw new Error(error.message);
-    }
+    return this.httpClient.get(`http://localhost:3000/AngularDef/data/${routeId}`)
   };
 
   createBook(book: Book) {

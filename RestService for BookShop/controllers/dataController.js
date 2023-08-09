@@ -25,7 +25,6 @@ dataController.post('/', hasUser(),  async (req, res) => {
         const item = await createItem(book);
         res.json(item);  
     } catch (err) {
-        console.log(err);
         const message = parseError(err)
         res.status(400).json({ message });
     };

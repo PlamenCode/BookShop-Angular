@@ -10,7 +10,11 @@ import { Router } from '@angular/router';
 export class CartService {
   cart: BookId[] = [];
 
-  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
+  constructor(
+      private http: HttpClient,
+      private auth: AuthService, 
+      private router: Router
+    ) { }
 
 
   add(book:BookId){
@@ -19,7 +23,7 @@ export class CartService {
         return res;
       })
     } else {
-      return;
+      return this.router.navigate(['/login']);
     }
   };
 

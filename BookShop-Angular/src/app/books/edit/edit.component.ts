@@ -9,9 +9,9 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
 })
-export class EditComponent implements OnInit{
+export class EditComponent implements OnInit {
   hasError: boolean = false;
   errorMsg: string = '';
   private routeSub = Subscription as any;
@@ -24,6 +24,7 @@ export class EditComponent implements OnInit{
     price: 0,
     description: '',
   };
+
   book: BookId = {
     name: '',
     author: '',
@@ -31,49 +32,53 @@ export class EditComponent implements OnInit{
     price: 0,
     description: '',
     ownerId: '',
-    _id: ''
+    _id: '',
   };
 
   constructor(
-    private bookService: BooksService, 
-    private router: Router, 
+    private bookService: BooksService,
+    private router: Router,
     // private authService: AuthService,
     private route: ActivatedRoute,
-    private http: HttpClient,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe(params => {
+    this.routeSub = this.route.params.subscribe((params) => {
       this.params = params['id'];
-    this.http.get(`http://localhost:3000/AngularDef/data/${params['id']}`).subscribe(
-      res => {
-        this.book = res as any;
+      this.http
+        .get(`http://localhost:3000/AngularDef/data/${params['id']}`)
+        .subscribe(
+          (res) => {
+            this.book = res as any;
 
-        this.form.name = this.book.name;
-        this.form.author = this.book.author;
-        this.form.img = this.book.img;
-        this.form.price = this.book.price;
-        this.form.description = this.book.description;
-      },
-      error => {
-        const navigationExtras: NavigationExtras = {
-          state: {
-            error: error.error.message
+            this.form.name = this.book.name;
+            this.form.author = this.book.author;
+            this.form.img = this.book.img;
+            this.form.price = this.book.price;
+            this.form.description = this.book.description;
+          },
+          (error) => {
+            const navigationExtras: NavigationExtras = {
+              state: {
+                error: error.error.message,
+              },
+            };
+            this.router.navigate(['error'], navigationExtras);
           }
-        }
-        this.router.navigate(['error'], navigationExtras)} 
-      )
-   });
+        );
+    });
   }
 
-  submitDatabase(){  
+  submitDatabase() {
     this.bookService.editBook(this.form, this.params).subscribe(
-      res => { this.router.navigate(['/']) },
-      error => { 
+      (res) => {
+        this.router.navigate(['/books']);
+      },
+      (error) => {
         this.hasError = true;
         this.errorMsg = error.error.message;
-      },
+      }
     );
-  };
-
+  }
 }
