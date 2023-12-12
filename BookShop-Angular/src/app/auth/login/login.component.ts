@@ -20,7 +20,7 @@ export class LoginComponent {
 
   submit() {
     this.authService.login(this.form);
-    if(!this.authService.loginError){
+    if(this.authService.loginError){
       this.hasError = true;
     }
   }

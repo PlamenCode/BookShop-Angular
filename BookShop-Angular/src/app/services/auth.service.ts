@@ -59,7 +59,7 @@ export class AuthService {
       .catch((error) => {
         this.isAuthenticated = false;
         console.log('invalid email or password');
-        this.loginError = 'invalid email or password';
+        this.loginError = true;
       })
       .finally(() => { this.isLoading = false });
   }
