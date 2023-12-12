@@ -40,6 +40,8 @@ a:hover{
 }
 
 .navButtons button{
+    color: #7d5ba6;
+    color: #bd1ded;
     color: white;
     background-color: #b17dec;
     cursor: pointer;

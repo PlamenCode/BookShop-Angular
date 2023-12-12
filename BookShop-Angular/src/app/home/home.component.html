@@ -1,39 +1,13 @@
 <section class="main">
 
-    <div class="container">
-        <img src="../../assets/backgrond1.jpg" alt="">
-    </div>
+    <h1>Wellcome</h1>
     
-    <div class="filter"></div>
-
-    <div class="content">
-        <h1>Wellcome</h1>
-
-        <div class="content_info">
+    <div class="container">
+        <div class="content">
             <h2>Buy and Sell your textbooks for the best price</h2>
-            <p>From applied literature to educatonal resources, we have a lot of textbooks to offer you. We provide only the best books</p>
-            <button routerLink="/books">Catalog</button>
+            <p>from applied literature to educatonal resources, we have a lot of textbooks to offer you. We provide only the best books</p>
+            <a routerLink="/books">Catalog</a>
         </div>
+        <img src="https://cdn.pixabay.com/photo/2018/06/27/07/45/college-student-3500990_1280.jpg" alt="">
     </div>
-
-    <div class="recomended">
-        <h2>Recomended books</h2>
-
-        <div class="books" *ngIf="books.length > 0">
-            <ng-container *ngFor="let SingleBook of books">
-                <div class="card">
-                    <div class="image">
-                        <img src="{{SingleBook.img}}"/>
-                    </div>
-                    <div class="details">
-                        <div class="center">
-                            <p>{{SingleBook.description}}</p>
-                            <button routerLink="/books/{{SingleBook._id}}">Details</button>
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-        </div>
-    </div>
-        
 </section>

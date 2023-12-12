@@ -55,8 +55,4 @@ export class BooksService {
     return this.httpClient.delete(`http://localhost:3000/AngularDef/data/${bookId}`, data );
   };
 
-  getThreeBooks(){
-    return this.httpClient.get(`http://localhost:3000/AngularDef/data/recent`);
-  }
-
 }
