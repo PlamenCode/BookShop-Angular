@@ -1,10 +1,10 @@
-const express = require('express');
+const express = require('./node_modules2/express');
 const cors = require('./middlewares/cors');
 //const cors = require('cors');
-const mongoose = require('mongoose');
+const mongoose = require('./node_modules2/mongoose');
 const dataController = require('./controllers/dataController');
 const trimBody = require('./middlewares/trimBody');
-const cookieParser = require('cookie-parser');
+const cookieParser = require('./node_modules2/cookie-parser');
 const cartController = require('./controllers/cartController');
 
 const CONNECTION_STRING = 'mongodb://127.0.0.1:27017/AngularDefance';
