@@ -1,5 +1,5 @@
 const { hasUser } = require('../middlewares/guards');
-const { getAll, createItem, getById, deleteById, updateItem } = require('../services/itemService');
+const { getAll, createItem, getById, deleteById, updateItem, getThreeBooks } = require('../services/itemService');
 const parseError = require('../utils/parser');
 
 const dataController = require('express').Router();
@@ -30,6 +30,16 @@ dataController.post('/', hasUser(),  async (req, res) => {
     };
 });
 
+dataController.get('/recent', async (req, res) =>{
+    try { 
+        const items = await getThreeBooks();
+        res.json(items)
+    } catch (error) {
+        const message = `no books yet`
+        res.status(400).json({ message });
+    }
+})
+
 dataController.get('/:id', async (req, res) => {
     try { 
         const item = await getById(req.params.id);
@@ -39,6 +49,7 @@ dataController.get('/:id', async (req, res) => {
         res.status(400).json({ message });
     }
 });
+
 
 dataController.put('/:id', hasUser(),  async (req, res) => {
     const item = await getById(req.params.id);

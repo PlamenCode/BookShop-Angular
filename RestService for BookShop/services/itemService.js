@@ -9,6 +9,15 @@ async function getById(id){
     return Item.findById(id);
 };
 
+async function getThreeBooks(){
+    let books = await Item.find({}).limit(3).lean();
+    for (const book of books) {
+       book.description = book.description.split('').slice(0, 100).join('');
+       book.description += ' ...';
+    }
+    return books;
+}
+
 async function createItem(book){
     return Item.create(book);
 };
@@ -36,5 +45,6 @@ module.exports = {
     getById,
     createItem,
     updateItem,
-    deleteById
+    deleteById,
+    getThreeBooks
 }
